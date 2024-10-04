@@ -19,32 +19,36 @@ function updateTimer() {
     timer.textContent = `${hours}:${minutes}:${seconds}`;
 }
 
-start.addEventListener('click', function() {
-    if (!interval) {
-        interval = setInterval(function() {
-            totalSeconds++;
-            updateTimer();
-        }, 1000);
+document.addEventListener('click', function (event) {
+    const element = event.target;
+
+    if (element.classList.contains('start')) {
+        if (!interval) {
+            interval = setInterval(function () {
+                totalSeconds++;
+                updateTimer();
+            }, 1000);
+        }
+
+        const timerFontColor = rootStyles.getPropertyValue('--font-color');
+        timer.style.color = timerFontColor;
     }
 
-    const timerFontColor = rootStyles.getPropertyValue('--font-color');
-    timer.style.color = timerFontColor;
-});
+    if (element.classList.contains('pause')) {
+        clearInterval(interval);
+        interval = null;
 
-pause.addEventListener('click', function(e) {
-    clearInterval(interval);
-    interval = null;
+        const timerFontColor = rootStyles.getPropertyValue('--pause-font-color');
+        timer.style.color = timerFontColor;
+    }
 
-    const timerFontColor = rootStyles.getPropertyValue('--pause-font-color');
-    timer.style.color = timerFontColor;
-});
+    if (element.classList.contains('reset')) {
+        clearInterval(interval);
+        interval = null;
+        totalSeconds = 0;
+        updateTimer();
 
-reset.addEventListener('click', function(e) {
-    clearInterval(interval);
-    interval = null;
-    totalSeconds = 0;
-    updateTimer();
-
-    const timerFontColor = rootStyles.getPropertyValue('--font-color');
-    timer.style.color = timerFontColor;
+        const timerFontColor = rootStyles.getPropertyValue('--font-color');
+        timer.style.color = timerFontColor;
+    }
 });
