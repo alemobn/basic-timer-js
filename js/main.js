@@ -1,7 +1,8 @@
 const timer = document.querySelector('.timer');
 const start = document.querySelector('.start');
 const pause = document.querySelector('.pause');
-const restart = document.querySelector('.restart');
+const reset = document.querySelector('.reset');
+const rootStyles = getComputedStyle(document.documentElement);
 
 let totalSeconds = 0;
 let interval;
@@ -25,16 +26,25 @@ start.addEventListener('click', function() {
             updateTimer();
         }, 1000);
     }
+
+    const timerFontColor = rootStyles.getPropertyValue('--font-color');
+    timer.style.color = timerFontColor;
 });
 
 pause.addEventListener('click', function(e) {
     clearInterval(interval);
     interval = null;
+
+    const timerFontColor = rootStyles.getPropertyValue('--pause-font-color');
+    timer.style.color = timerFontColor;
 });
 
-restart.addEventListener('click', function(e) {
+reset.addEventListener('click', function(e) {
     clearInterval(interval);
     interval = null;
     totalSeconds = 0;
     updateTimer();
+
+    const timerFontColor = rootStyles.getPropertyValue('--font-color');
+    timer.style.color = timerFontColor;
 });
