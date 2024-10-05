@@ -1,11 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
 :root {
-    --body-color: #161616;
-    --container-color: #e9dfdf;
-    --font-color: #000000;
-    --shadow-color: #827d7d;
+    --body-color: #efebeb;
+    --container-color: #ffffff;
+    --font-color: #585555;
     --pause-font-color: #ff0000;
+    --link-color: #3b3beb;
+
+    --box-shadow: 2px 2px 20px #e7e1e1;
 }
 
 * {
@@ -13,7 +15,16 @@
     outline: 0;
 }
 
+html,
 body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
     font-family: 'Open Sans', sans-serif;
     font-size: 1em;
     line-height: 1.5;
@@ -26,25 +37,55 @@ body {
 }
 
 .container {
-    max-width: 640px;
-    margin: 50px auto;
-    padding: 30px;
+    margin: 100px auto;
+    padding: 50px 150px;
 
     background: var(--container-color);
 
-    /*border: 1px solid var(--font-color);*/
-    box-shadow: 1px 1px 10px var(--shadow-color);
+    box-shadow: var(--box-shadow);
     border-radius: 15px;
 
     text-align: center;
-}
-
-.container h1 {
-    margin: 0px;
 }
 
 .timer-container .timer {
     font-size: 40px;
     padding: 0px;
     margin: 0px;
+    color: var(--font-color);
+}
+
+.timer-container .button {
+    padding: 10px 30px;
+    margin: 20px 5px 0 5px;
+    background-color: var(--body-color);
+    border: none;
+    box-shadow: var(--box-shadow);
+    border-radius: 12px;
+
+    color: var(--font-color);
+    transition: background 0.3s;
+}
+
+.timer-container .button:hover {
+    cursor: pointer;
+    background-color: darken(var(--accent-color), 10%);
+    box-shadow: var(--box-shadow);
+}
+
+.footer {
+    padding: 20px;
+    background-color: var(--container-color);
+    box-shadow: var(--box-shadow);
+    text-align: center;
+    color: var(--font-color);
+}
+
+.footer p {
+    margin: 5px;
+}
+
+.footer a {
+    text-decoration: none;
+    color: var(--link-color);
 }
